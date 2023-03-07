@@ -173,17 +173,13 @@ table.table td i {
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Lolita</td>
+                        <td>Gabo</td>
                         <td>Ocupado</td>
                         <td>5.5/10</td>
                         <td>
                             <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                         </td>
                         <td>Buen servicio</td>
-                        <td>Gracias</td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                        </td>
                     </tr>
                     <tr>
                         <td>1</td>
@@ -194,10 +190,6 @@ table.table td i {
                             <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                         </td>
                         <td>Buen servicio</td>
-                        <td>Gracias</td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                        </td>
                     </tr>
                 </tbody>
             </table>
