@@ -36,3 +36,14 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::get('/controlTickets', function () {
+    return view('controlTickets');
+});
+
+Route::get('/consDepart', function () {
+    return view('consulDepart');
+});
+
+Route::get('/asignarAux', function () {
+    return view('asigAuxiliar');
+});
