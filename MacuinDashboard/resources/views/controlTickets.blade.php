@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MacuinDashboard</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</head>
+@extends('plantilla')
+@section('content')
 <style>
 body {
     color: #000066;
@@ -142,7 +129,6 @@ table.table td i {
 }    
 </style>
 
-<body style="background-color: #00FA9A">
 <div class="container-xl" style="color: antiquewhite;">
     <div class="abs-center">
     <div class="table-responsive">
@@ -161,69 +147,42 @@ table.table td i {
             <table class="table table-striped table-hover table-bordered" style="background-color: white">
                 <thead>
                     <tr style="background-color: #00FA9A;">
-                        <th>ID</th>
+                        <th>IDTicket</th>
                         <th>Solicitante</th>
+                        <th>Problema</th>
                         <th>Status</th>
-                        <th>Departamentos</th>
-                        <th>Actions</th>
+                        <th>Auxiliar</th>
+                        <th>Fecha</th>
+                        <th>Comentarios</th>
+                        <th>Departamento</th>
+                        <th>Reporte</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
                         <td>Thomas Hardy</td>
-                        <td>89 Chiaroscuro Rd.</td>
-                        <td></td>
+                        <td>No funciona la impresora</td>
+                        <td>Corregido</td>
+                        <td>Pepe</td>
+                        <td>16/02/2023</td>
+                        <td>Servicio Eficiente</td>
+                        <td>Contabilidad</td>
                         <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <button class="btn btn-primary">Generar Reporte</button>
                         </td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>Maria Anders</td>
-                        <td>Obere Str. 57</td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
+                        <td>No funciona la impresora</td>
+                        <td>En espera</td>
+                        <td><button type="submit" class="btn btn-success"><a style="color:white;" href="{{route('asigAuxiliar')}}">Asignar</a></button></td>
+                        <td>01/03/2023</td>
+                        <td>>:c</td>
+                        <td>Recursos Humanos</td>
+                        <td><button disabled type="submit" class="btn btn-secondary">Generar Reporte</button></td>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Fran Wilson</td>
-                        <td>C/ Araquil, 67</td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Dominique Perrier</td>
-                        <td>25, rue Lauriston</td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Martin Blank</td>
-                        <td>Via Monte Bianco 34</td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>        
                 </tbody>
             </table>
 
@@ -231,5 +190,4 @@ table.table td i {
     </div>
     </div>  
 </div>
-</body>
-</html>
+@stop
