@@ -15,7 +15,7 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -24,6 +24,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/register', function(){
+    return Inertia::render('register');
+})->middleware(['auth', 'verified'])->name('register1');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -36,14 +40,19 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+*/
+Route::get('/consDepart', function () {
+    return view('/consDepart');
+})->name('consDepart');
+
+Route::get('/asigAuxiliar', function () {
+    return view('/asigAuxiliar');
+})->name('asigAuxiliar');
+
 Route::get('/controlTickets', function () {
     return view('controlTickets');
-});
+})->name('control');
 
-Route::get('/consDepart', function () {
-    return view('consulDepart');
-});
-
-Route::get('/asignarAux', function () {
-    return view('asigAuxiliar');
-});
+Route::get('/registerU', function (){
+    return view('/registerU');
+})->name('registerU');
