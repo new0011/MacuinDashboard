@@ -146,10 +146,10 @@ table.table td i {
             </div>
             <table class="table table-striped table-hover table-bordered" style="background-color: white">
                 <thead>
-                    <tr style="background-color: #00FA9A;">
+                    <tr style="background-color: #FFEA20;">
                         <th>ID</th>
                         <th>Nombre del departamento</th>
-                        <th>Jefe</th>
+                        <th>Descripción</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

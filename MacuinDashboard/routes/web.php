@@ -45,6 +45,10 @@ Route::get('/consDepart', function () {
     return view('/consDepart');
 })->name('consDepart');
 
+Route::get('/consUser', function () {
+    return view('/consUser');
+})->name('consUser');
+
 Route::get('/asigAuxiliar', function () {
     return view('/asigAuxiliar');
 })->name('asigAuxiliar');
@@ -53,6 +57,14 @@ Route::get('/controlTickets', function () {
     return view('controlTickets');
 })->name('control');
 
+Route::get('/report', function () {
+    return view('report');
+})->name('report');
+
 Route::get('/registerU', function (){
     return view('/registerU');
 })->name('registerU');
+
+Route::get('/registerD', function (){
+    return view('/registerD');
+})->name('registerD');
