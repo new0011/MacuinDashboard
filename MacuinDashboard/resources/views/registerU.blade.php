@@ -30,23 +30,19 @@
             @csrf
             <div class="row g-3 align-items-center">
                     <div class="form-group">
-                        <label class="form-label">Matricula: </label>
-                        <input required type="text" class="form-control" name="Nombre_Usuario" placeholder="Introduce tu nombre de usuario..." value="{{old("Nombre_Usuario")}}" onchange="validarCampo(this.value)">
+                        <label class="form-label">Nombre: </label>
+                        <input required type="text" class="form-control" name="Nombre_Usuario" placeholder="Introduce tu nombre de usuario..." value="{{old("Nombre_Usuario")}}">
                         <!--<p class="fv-bold text-danger">{$errors->first('Nombre_Usuario')}}</p>-->
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Correo: </label>
-                        <input required type="email" class="form-control" name="Correo" placeholder="Direccion de correo..." value="{{old("Correo")}}" onchange="validarCorreo(this.value)">
+                        <label class="form-label">Apellido paterno: </label>
+                        <input required type="email" class="form-control" name="apeP" placeholder="Direccion de correo..." value="{{old("apeP")}}">
                         <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Contraseña: </label>
-                        <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password" placeholder="Contraseña segura..." value="{{old("password")}}">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Confirmar contraseña: </label>
-                        <input id="password" type="password" class="form-control " name="password_confirmation" required autocomplete="current-password" placeholder="Confirma contraseña..." value="{{old("password_confirmation")}}">
-                        <p class="fv-bold text-danger">{{$errors->first('password_confirmation')}}</p>
+                        <label class="form-label">Apellido materno: </label>
+                        <input required type="email" class="form-control" name="apeM" placeholder="Direccion de correo..." value="{{old("apeM")}}">
+                        <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                     </div>
                     <div class="form-group">
                         <label class="form-label" name="TypeU">Tipo de usuario: </label>
@@ -57,31 +53,12 @@
                         </select>
                         <p class="fv-bold text-danger">{{$errors->first('TypeU')}}</p>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Contacto: </label>
-                        <input id="Contacto" type="text" class="form-control " name="Contacto" required autocomplete="current-password" placeholder="Medio en el que te podemos contactar..." value="{{old("Contacto")}}">
-                        <p class="fv-bold text-danger">{{$errors->first('Contacto')}}</p>
-                    </div>
                 <div class="text-center">
                     <button type="submit" name="btnsaveU" class="btn btn-dark m-3">Guardar</button>
                 </div>
             </div>
             <script>
-                function validarCampo (n){
-                    console.log(n);
-                    if(n.length > 9 || n.length<9){
-                        alert("La Matricula debe contener solo 9 espacios");
-                    }
-                }
 
-                function validarCorreo(n){
-                    console.log(n);
-                    var re = /\w\d+(.)+@+(upq.)+((mx)|(edu.mx))/;
-
-                    if(!re.test(n)){
-                        alert("Correo erroneo o inexistente!!!");
-                    }
-                }
             </script>  
 
         </form>

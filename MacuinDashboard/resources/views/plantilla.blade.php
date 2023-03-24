@@ -31,7 +31,7 @@
   </style>
 
   </head>
-<body style="background-color: #00FA9A">
+<body style="background-color: #FFB319">
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <a class="navbar-brand" href="">Inicio</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,18 +44,21 @@
               <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
               <div class="dropdown-menu" aria-labelledby="dropdown09">
                 <a class="dropdown-item" href="{{route('registerU')}}">Registrar Usuario</a>
-                <a class="dropdown-item" href="{{route('consDepart')}}">Consultar Usuario</a>
+                <a class="dropdown-item" href="{{route('consUser')}}">Consultar Usuario</a>
               </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Departamentos</a>
               <div class="dropdown-menu" aria-labelledby="dropdown09">
-                <a class="dropdown-item" href="#">Resgitrar Departamentos</a>
+                <a class="dropdown-item" href="{{route('registerD')}}">Resgitrar Departamentos</a>
                 <a class="dropdown-item" href="{{route('consDepart')}}">Consultar Departamento</a>
               </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('control')}}">Tickets</a>
+            </li>
+            <li>
+              <a class="nav-link" href="{{route('report')}}">Reportes</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-md-0">

@@ -135,7 +135,7 @@ table.table td i {
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8" style="color: #000066;"><h2>Control de Tickets</h2></div>
+                    <div class="col-sm-8" style="color: #000066;"><h2>Usuarios</h2></div>
                     <div class="col-sm-4">
                         <div class="search-box">
                             <i class="material-icons">&#xE8B6;</i>
@@ -146,24 +146,27 @@ table.table td i {
             </div>
             <table class="table table-striped table-hover table-bordered" style="background-color: white">
                 <thead>
-                    <tr style="background-color: #00FA9A;">
-                        <th>IDTicket</th>
-                        <th>Solicitante</th>
-                        <th>Problema</th>
-                        <th>Auxiliar</th>
-                        <th>Fecha</th>
-                        <th>Reporte</th>
+                    <tr style="background-color: #FFEA20;">
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido paterno</th>
+                        <th>Apellido materno</th>
+                        <th>Tipo de usuario</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Thomas Hardy</td>
-                        <td>No funciona la impresora</td>
-                        <td><button type="submit" class="btn btn-success"><a style="color:white;" href="{{route('asigAuxiliar')}}">Asignar</a></button></td>
-                        <td>16/02/2023</td>
+                        <td>001</td>
+                        <td>001</td>
+                        <td>Auxiliar</td>
+                        <td>Correo</td>
+
                         <td>
-                            <button class="btn btn-primary">Generar Reporte</button>
+                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                 </tbody>
