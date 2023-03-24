@@ -17,8 +17,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table="Usuario";
+    
     protected $fillable = [
-        'name',
+        'nameU',
+        'LastNameP',
+        'LastNameM',
+        'IDRole',
+        'IDEP',
         'email',
         'password',
     ];
@@ -41,4 +47,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAllCarrera(){
+        return Carrera::all();
+    }
+
+    public function getIdCarrera($id){
+        return Carrera::find($id);
+    }
 }

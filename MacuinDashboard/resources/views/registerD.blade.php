@@ -26,21 +26,21 @@
             <svg class="bi" width="100" height="100"><use xlink:href="#prov"/></svg>
         </div>
 
-        <form method="post" action="">
+        <form method="post" action="{{route('registerD.saveD')}}">
             @csrf
             <div class="row g-3 align-items-center">
                     <div class="form-group">
                         <label class="form-label">Nombre del departamento: </label>
-                        <input required type="text" class="form-control" name="Nombre_Departamento" placeholder="Introduce el nombre del departamento...">
+                        <input required type="text" class="form-control" name="NameDep" placeholder="Introduce el nombre del departamento...">
                         <!--<p class="fv-bold text-danger">{$errors->first('Nombre_Usuario')}}</p>-->
                     </div>
                     <div class="form-group">
                         <label class="form-label">Descripción: </label>
-                        <input required type="text" class="form-control" name="Descrip" placeholder="Descripción al que perteneciente...">
+                        <textarea required class="form-control" name="Descripcion" rows="3" placeholder="Desatate"></textarea>
                         <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                     </div>
                 <div class="text-center">
-                    <button type="submit" name="btnsaveU" class="btn btn-dark m-3">Guardar</button>
+                    <button type="submit" name="btnsaveD" class="btn btn-dark m-3">Guardar</button>
                 </div>
             </div>
             <script>

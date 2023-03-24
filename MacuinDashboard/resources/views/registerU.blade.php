@@ -26,30 +26,31 @@
             <svg class="bi" width="100" height="100"><use xlink:href="#prov"/></svg>
         </div>
 
-        <form method="post" action="">
+        <form method="post" action="{{route('registerU.registered')}}">
             @csrf
             <div class="row g-3 align-items-center">
                     <div class="form-group">
                         <label class="form-label">Nombre: </label>
-                        <input required type="text" class="form-control" name="Nombre_Usuario" placeholder="Introduce tu nombre de usuario..." value="{{old("Nombre_Usuario")}}">
+                        <input required type="text" class="form-control" name="nameU" placeholder="Introduce tu nombre de usuario..." value="{{old("nameU")}}">
                         <!--<p class="fv-bold text-danger">{$errors->first('Nombre_Usuario')}}</p>-->
                     </div>
                     <div class="form-group">
                         <label class="form-label">Apellido paterno: </label>
-                        <input required type="email" class="form-control" name="apeP" placeholder="Direccion de correo..." value="{{old("apeP")}}">
+                        <input required type="text" class="form-control" name="LastNameP" placeholder="Apellido Paterno..." value="{{old("LastNameP")}}">
                         <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                     </div>
                     <div class="form-group">
                         <label class="form-label">Apellido materno: </label>
-                        <input required type="email" class="form-control" name="apeM" placeholder="Direccion de correo..." value="{{old("apeM")}}">
+                        <input required type="text" class="form-control" name="LastNameM" placeholder="Apellido Materno..." value="{{old("LastNameM")}}">
                         <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                     </div>
                     <div class="form-group">
                         <label class="form-label" name="TypeU">Tipo de usuario: </label>
                         <select name="TypeU" class="form-select" aria-label=".form-select-lg example">
                             <option disabled selected>Selecciona una opción</option>
-                            <option value="0">Usuario Normal</option>
-                            <option value="1">Administrador</option>
+                            <option value="1">Jefe</option>
+                            <option value="2">Auxiliar</option>
+                            <option value="3">Cliente</option>
                         </select>
                         <p class="fv-bold text-danger">{{$errors->first('TypeU')}}</p>
                     </div>

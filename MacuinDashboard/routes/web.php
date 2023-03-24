@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DepartamentosCont;
 use Inertia\Inertia;
 
 /*
@@ -15,35 +17,17 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
+#Rutas tipo get
+#Formularios
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return view('login');
 });
-
-Route::get('/register', function(){
-    return Inertia::render('register');
-})->middleware(['auth', 'verified'])->name('register1');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
-*/
-Route::get('/consDepart', function () {
-    return view('/consDepart');
-})->name('consDepart');
+Route::get('/registerU', function(){
+    return view('registerU');
+})->name('registerU');
+Route::get('/registerD', [DepartamentosCont::class, 'create'])->name('registerD');
+#Consultas
+Route::get('/consDepart', [DepartamentosCont::class, 'index'])->name('consDepart');
 
 Route::get('/consUser', function () {
     return view('/consUser');
@@ -61,10 +45,25 @@ Route::get('/report', function () {
     return view('report');
 })->name('report');
 
-Route::get('/registerU', function (){
-    return view('/registerU');
-})->name('registerU');
+/*
+Route::get('/register', function(){
+    return Inertia::render('register');
+})->middleware(['auth', 'verified'])->name('register1');
 
-Route::get('/registerD', function (){
-    return view('/registerD');
-})->name('registerD');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+*/
+#Rutas tipo Post
+Route::post('/registerU/registered', [LoginController::class, 'register'])->name('registerU.registered');
+Route::post('/registerD/saveD', [DepartamentosCont::class, 'store'])->name('registerD.saveD');
+Route::post('/startSesion', [LoginController::class, 'login'])->name('startSesion');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
