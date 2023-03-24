@@ -7,10 +7,30 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Departamentos;
+use App\Models\Role;
+use App\Models\ConsUser;
 
 class LoginController extends Controller
 {
-    public function register(Request $request){
+    protected $depto;
+    protected $role;
+    protected $CUser;
+    public function __construct(Departamentos $depto, Role $role, ConsUser $CUser){
+        $this->depto = $depto;
+        $this->role = $role;
+        $this->CUser = $CUser;
+    }
+    public function datesSelect(){
+        $dep = $this->depto->getAllDepart();
+        $rol = $this->role->getAllRole();
+        return view('registerU', compact('dep', 'rol'));
+    }
+    public function users(){
+        $CU = $this->CUser->getAllDatosU();
+        return view('consUser', compact('CU'));
+    }
+    public function register(Request $req){
         $user = new User();
 
         $user->nameU = $req->nameU;
@@ -24,9 +44,29 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('consDepart'));
+        return redirect(route('registerU'));
+    }
+    public function getLogin(){
+        return view('login');
     }
     public function login(Request $req){
+        $credentials = [
+            "email" => $req->email,
+            "password" => $req->password
+        ];
+        $remember = ($req->has('remember') ? true : false);
+        if(Auth::attempt($credentials)){
+            $req->session()->regenerate();
+            return redirect(route('registerU'));
+        }else{
+            return redirect(route('login'));
+        }
+    }
+    public function logout(Request $req){
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
 
+        return redirect(route('login'));
     }
 }

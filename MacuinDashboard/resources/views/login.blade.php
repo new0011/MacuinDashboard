@@ -30,7 +30,7 @@
         <svg class="bi" width="100" height="100"><use xlink:href="#prov"/></svg>
     </div>
 
-    <form method="post" action="">
+    <form method="post" action="{{route('logear')}}">
         @csrf
         <div class="row g-3 align-items-center">
                 <div class="form-group">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Contraseña: </label>
-                    <input required type="password" class="form-control inputB" name="pass" placeholder="Coloca tu contraseña..." value="{{old("pass")}}">
+                    <input required type="password" class="form-control inputB" name="password" placeholder="Coloca tu contraseña..." value="{{old("password")}}">
                     <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                 </div>
             <div class="text-center">

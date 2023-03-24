@@ -19,19 +19,14 @@ use Inertia\Inertia;
 */
 #Rutas tipo get
 #Formularios
-Route::get('/', function () {
-    return view('login');
-});
-Route::get('/registerU', function(){
-    return view('registerU');
-})->name('registerU');
+Route::get('/', [LoginController::class, 'getLogin'])->name('login');
+Route::get('/registerU', [LoginController::class, 'datesSelect'])->name('registerU');
 Route::get('/registerD', [DepartamentosCont::class, 'create'])->name('registerD');
+#Auth
+Route::post('/logear', [LoginController::class, 'login'])->name('logear');
 #Consultas
 Route::get('/consDepart', [DepartamentosCont::class, 'index'])->name('consDepart');
-
-Route::get('/consUser', function () {
-    return view('/consUser');
-})->name('consUser');
+Route::get('/consUser', [LoginController::class, 'users'])->name('consUser');
 
 Route::get('/asigAuxiliar', function () {
     return view('/asigAuxiliar');

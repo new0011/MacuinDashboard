@@ -9,6 +9,7 @@
         position: relative;
         width: 30%;
         background-color: white;
+        margin-bottom: 10px;
     }
 </style>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -45,12 +46,32 @@
                         <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                     </div>
                     <div class="form-group">
-                        <label class="form-label" name="TypeU">Tipo de usuario: </label>
-                        <select name="TypeU" class="form-select" aria-label=".form-select-lg example">
+                        <label class="form-label">Correo Electronico: </label>
+                        <input required type="email" class="form-control" name="email" placeholder="Introduce tu correo personal..." value="{{old("email")}}">
+                        <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña: </label>
+                        <input required type="password" class="form-control" name="password" placeholder="Introduce una contraseña segura..." value="{{old("password")}}">
+                        <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" name="TypeU">Departamento: </label>
+                        <select name="IDEP" class="form-select" aria-label=".form-select-lg example">
                             <option disabled selected>Selecciona una opción</option>
-                            <option value="1">Jefe</option>
-                            <option value="2">Auxiliar</option>
-                            <option value="3">Cliente</option>
+                            @foreach($dep as $dep)
+                                <option value="{{$dep->IDEP}}">{{$dep->NameDep}}</option>
+                            @endforeach
+                        </select>
+                        <p class="fv-bold text-danger">{{$errors->first('TypeU')}}</p>
+                    </div>                    
+                    <div class="form-group">
+                        <label class="form-label" name="TypeU">Tipo de usuario: </label>
+                        <select name="IDRole" class="form-select" aria-label=".form-select-lg example">
+                            <option disabled selected>Selecciona una opción</option>
+                            @foreach($rol as $rol)
+                                <option value="{{$rol->IDRole}}">{{$rol->nameRole}}</option>
+                            @endforeach
                         </select>
                         <p class="fv-bold text-danger">{{$errors->first('TypeU')}}</p>
                     </div>

@@ -149,26 +149,25 @@ table.table td i {
                     <tr style="background-color: #FFEA20;">
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Apellido paterno</th>
-                        <th>Apellido materno</th>
                         <th>Tipo de usuario</th>
+                        <th>Nombre de Departamento</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>001</td>
-                        <td>001</td>
-                        <td>Auxiliar</td>
-                        <td>Correo</td>
-
+                        @foreach($CU as $CU)
+                        <td>{{$CU->IDU}}</td>
+                        <td>{{$CU->NombreCompleto}}</td>
+                        <td>{{$CU->nameRole}}</td>
+                        <td>{{$CU->nameDep}}</td>
                         <td>
                             <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
                             <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
 
