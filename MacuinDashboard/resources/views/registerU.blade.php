@@ -1,5 +1,8 @@
 @extends('plantilla')
 @section('content')
+@if(@Auth::user()->hasRole('Cliente'))
+    <h2>Eres un Cliente uwu</h2>
+@endif
 <style>
     div.formxd{
         border-color: black;

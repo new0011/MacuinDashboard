@@ -41,8 +41,18 @@ class LoginController extends Controller
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
         $user->save();
-
         Auth::login($user);
+
+        if($req->IDRole == 1) {
+            $user->assignRole('Jefe');
+        }
+        if ($req->IDRole == 2) {
+            $user->assignRole('Auxiliar');
+        }
+        if($req->IDRole == 3) {
+            $user->assignRole('Cliente');
+        }
+
 
         return redirect(route('registerU'));
     }

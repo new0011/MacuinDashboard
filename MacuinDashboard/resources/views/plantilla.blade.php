@@ -50,7 +50,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Departamentos</a>
               <div class="dropdown-menu" aria-labelledby="dropdown09">
-                <a class="dropdown-item" href="{{route('registerD')}}">Resgitrar Departamentos</a>
+                <a class="dropdown-item" href="{{route('registerD')}}">Registrar Departamentos</a>
                 <a class="dropdown-item" href="{{route('consDepart')}}">Consultar Departamento</a>
               </div>
             </li>
@@ -61,8 +61,10 @@
               <a class="nav-link" href="{{route('report')}}">Reportes</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <form method="post" class="form-inline my-2 my-md-0" action="{{route('logout')}}">
+            @csrf
+            <!--<input class="form-control" type="text" placeholder="Search" aria-label="Search">-->
+            <button type="submit" name="btnLogout" class="btn btn-dark mr-3">Salir</button>
           </form>
         </div>
       </nav>
