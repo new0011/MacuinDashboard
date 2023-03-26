@@ -32,8 +32,8 @@
 
   </head>
 <body style="background-color: #FFB319">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <a class="navbar-brand" href="">Inicio</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand ml-5" href="">Inicio</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,11 +61,20 @@
               <a class="nav-link" href="{{route('report')}}">Reportes</a>
             </li>
           </ul>
-          <form method="post" class="form-inline my-2 my-md-0" action="{{route('logout')}}">
-            @csrf
-            <!--<input class="form-control" type="text" placeholder="Search" aria-label="Search">-->
+          <ul class="navbar-nav mr-5">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->nameU}}</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown09">
+                <a class="dropdown-item" href="{{route('registerU')}}">Editar Perfil</a>
+                <a class="dropdown-item" href="{{route('consUser')}}">Log Out</a>
+              </div>
+            </li>
+          </ul>
+          <!--<form method="post" class="form-inline my-2 my-md-0" action="{{route('logout')}}">
+            csrf
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
             <button type="submit" name="btnLogout" class="btn btn-dark mr-3">Salir</button>
-          </form>
+          </form>-->
         </div>
       </nav>
       @yield('content')

@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('plantillaLog')
 @section('content')
 <style>
     div.formxd{
@@ -21,13 +21,13 @@
 
     <div class="container formxd">
         <div class="text-center mt-2">
-            <h2 class="fw-normal">Agregar Usuario</h2>
+            <h2 class="fw-normal">Registrate</h2>
         </div>
         <div class="text-center m-2 mb-4">
             <svg class="bi" width="100" height="100"><use xlink:href="#prov"/></svg>
         </div>
 
-        <form method="post" action="{{route('registerU.registered')}}">
+        <form method="post" action="{{route('registerUOut.registeredO')}}">
             @csrf
             <div class="row g-3 align-items-center">
                     <div class="form-group">
@@ -63,27 +63,15 @@
                                 <option value="{{$dep->IDEP}}">{{$dep->NameDep}}</option>
                             @endforeach
                         </select>
-                        <p class="fv-bold text-danger">{{$errors->first('TypeU')}}</p>
+                        <!--<p class="fv-bold text-danger">{$errors->first('TypeU')}}</p>-->
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" name="TypeU">Tipo de usuario: </label>
-                        <select name="IDRole" class="form-select" aria-label=".form-select-lg example">
-                            <option disabled selected>Selecciona una opción</option>
-                            @foreach($rol as $rol)
-                                <option value="{{$rol->IDRole}}">{{$rol->nameRole}}</option>
-                            @endforeach
-                        </select>
-                        <p class="fv-bold text-danger">{{$errors->first('TypeU')}}</p>
-                    </div>
-                    <input type="hidden" name="verify" value="1">                        
+                    <input type="hidden" name="IDRole" value="3">
+                    <input type="hidden" name="verify" value="2">
                 <div class="text-center">
                     <button type="submit" name="btnsaveU" class="btn btn-dark m-3">Guardar</button>
+                    <a href=""></a>
                 </div>
             </div>
-            <script>
-
-            </script>  
-
         </form>
     </div>
 @stop

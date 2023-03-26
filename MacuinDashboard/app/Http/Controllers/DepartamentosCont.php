@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Departamentos;
+use App\Http\Requests\DepartReq;
 
 class DepartamentosCont extends Controller
 {
@@ -31,11 +32,11 @@ class DepartamentosCont extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $req)
+    public function store(DepartReq $req)
     {
         $deptm = new Departamentos($req->all());
         $deptm->save();
-        return redirect(route('registerD'));
+        return redirect(route('registerD'))->with('confDep', 'Guardado Correctamente');
     }
 
     /**
@@ -51,15 +52,19 @@ class DepartamentosCont extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dept=$this->deptm->getIdDepart($id);
+        return view('editDep', compact('dept'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $req, string $id)
     {
-        //
+        $dept=Departamentos::find($id);
+        $dept->fill($req->all());
+        $dept->save();
+        return redirect(route('consDepart'));
     }
 
     /**

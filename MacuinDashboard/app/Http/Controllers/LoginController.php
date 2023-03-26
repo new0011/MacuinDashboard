@@ -30,6 +30,10 @@ class LoginController extends Controller
         $CU = $this->CUser->getAllDatosU();
         return view('consUser', compact('CU'));
     }
+    public function registerOut(Request $req){
+        $dep = $this->depto->getAllDepart();
+        return view('registerUOut', compact('dep'));
+    }
     public function register(Request $req){
         $user = new User();
 
@@ -52,9 +56,12 @@ class LoginController extends Controller
         if($req->IDRole == 3) {
             $user->assignRole('Cliente');
         }
-
-
-        return redirect(route('registerU'));
+        if($req->verify == 2){
+            return redirect(route('login'));
+        }
+        if($req->verify == 1){
+            return redirect(route('registerU'));
+        }
     }
     public function getLogin(){
         return view('login');
@@ -64,7 +71,7 @@ class LoginController extends Controller
             "email" => $req->email,
             "password" => $req->password
         ];
-        $remember = ($req->has('remember') ? true : false);
+        #$remember = ($req->has('remember') ? true : false);
         if(Auth::attempt($credentials)){
             $req->session()->regenerate();
             return redirect(route('registerU'));

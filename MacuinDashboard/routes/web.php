@@ -20,18 +20,23 @@ use Inertia\Inertia;
 Route::get('/', [LoginController::class, 'getLogin'])->name('login');
 Route::post('/logear', [LoginController::class, 'login'])->name('logear');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/registerU', [LoginController::class, 'datesSelect'])->name('registerU');
-Route::post('/registerU/registered', [LoginController::class, 'register'])->name('registerU.registered');
+Route::get('/registerUOut', [LoginController::class, 'registerOut'])->name('registerUOut');
+Route::post('/registerUOut/registeredO', [LoginController::class, 'register'])->name('registerUOut.registeredO');
 #Rutas para Jefe
 Route::group(['middleware' => ['role:Jefe']], function(){
     #Formularios
+    Route::get('/registerU', [LoginController::class, 'datesSelect'])->middleware('auth')->name('registerU');
     Route::get('/registerD', [DepartamentosCont::class, 'create'])->middleware('auth')->name('registerD');
+    Route::get('/consDepart/{id}/editDep', [DepartamentosCont::class, 'edit'])->middleware('auth')->name('consDepart.edit');
     #Consultas
     Route::get('/consDepart', [DepartamentosCont::class, 'index'])->middleware('auth')->name('consDepart');
     Route::get('/consUser', [LoginController::class, 'users'])->middleware('auth')->name('consUser');
     #Formularios Envio
+    Route::post('/registerU/registered', [LoginController::class, 'register'])->middleware('auth')->name('registerU.registered');
     Route::post('/registerD/saveD', [DepartamentosCont::class, 'store'])->middleware('auth')->name('registerD.saveD');
     Route::post('/startSesion', [LoginController::class, 'login'])->middleware('auth')->name('startSesion');
+    #Formulario Actualización
+    Route::put('/consDepart/{id}', [DepartamentosCont::class, 'update'])->middleware('auth')->name('consDepart.update');
 });
 
 
@@ -46,23 +51,4 @@ Route::get('/controlTickets', function () {
 Route::get('/report', function () {
     return view('report');
 })->name('report');
-
-/*
-Route::get('/register', function(){
-    return Inertia::render('register');
-})->middleware(['auth', 'verified'])->name('register1');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
-*/
-#Rutas tipo Post
 

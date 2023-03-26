@@ -43,8 +43,9 @@
                     <input required type="password" class="form-control inputB" name="password" placeholder="Coloca tu contraseña..." value="{{old("password")}}">
                     <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                 </div>
-            <div class="text-center">
+            <div class="text-left">
                 <button type="submit" name="btnsaveU" class="btn btn-dark m-3">Verificar y entrar</button>
+                <a href="{{route('registerUOut')}}" class="link-secondary">Registrarse</a>
             </div>
         </div>
         <script>

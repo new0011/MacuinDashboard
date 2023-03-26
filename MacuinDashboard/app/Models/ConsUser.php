@@ -12,6 +12,7 @@ class ConsUser extends Model
     protected $fillable = [
         'IDU',
         'Nombre Completo',
+        'Correo',
         'nameRole',
         'nameDep'
     ];

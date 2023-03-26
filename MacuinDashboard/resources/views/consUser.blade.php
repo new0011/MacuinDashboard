@@ -149,9 +149,9 @@ table.table td i {
                     <tr style="background-color: #FFEA20;">
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Correo</th>
                         <th>Tipo de usuario</th>
                         <th>Nombre de Departamento</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -159,13 +159,9 @@ table.table td i {
                         @foreach($CU as $CU)
                         <td>{{$CU->IDU}}</td>
                         <td>{{$CU->NombreCompleto}}</td>
+                        <td>{{$CU->Correo}}</td>
                         <td>{{$CU->nameRole}}</td>
                         <td>{{$CU->nameDep}}</td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>

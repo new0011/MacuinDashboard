@@ -11,9 +11,6 @@
         background-color: white;
     }
 </style>
-@if((session()->has('confDep')))
-
-@endif
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
         <symbol id="prov" viewBox="0 0 16 16">
             <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
@@ -23,33 +20,30 @@
 
     <div class="container formxd">
         <div class="text-center mt-2">
-            <h2 class="fw-normal">Agregar Departamento</h2>
+            <h2 class="fw-normal">Editar Departamento</h2>
         </div>
         <div class="text-center m-2 mb-4">
             <svg class="bi" width="100" height="100"><use xlink:href="#prov"/></svg>
         </div>
 
-        <form method="post" action="{{route('registerD.saveD')}}">
+        <form method="post" action="{{route('consDepart.update', $dept->IDEP)}}">
             @csrf
+            {!!method_field('PUT')!!}
             <div class="row g-3 align-items-center">
                     <div class="form-group">
                         <label class="form-label">Nombre del departamento: </label>
-                        <input required type="text" class="form-control" name="NameDep" placeholder="Introduce el nombre del departamento...">
+                        <input required type="text" class="form-control" name="NameDep" placeholder="Introduce el nombre del departamento..." value="{{$dept->NameDep}}">
                         <!--<p class="fv-bold text-danger">{$errors->first('Nombre_Usuario')}}</p>-->
                     </div>
                     <div class="form-group">
                         <label class="form-label">Descripción: </label>
-                        <textarea required class="form-control" name="Descripcion" rows="3" placeholder="Desatate"></textarea>
+                        <textarea required class="form-control" name="Descripcion" rows="3" placeholder="Desatate">{{$dept->Descripcion}}</textarea>
                         <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                     </div>
                 <div class="text-center">
                     <button type="submit" name="btnsaveD" class="btn btn-dark m-3">Guardar</button>
                 </div>
             </div>
-            <script>
-
-            </script>  
-
         </form>
     </div>
 @stop
