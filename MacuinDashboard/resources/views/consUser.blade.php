@@ -126,9 +126,21 @@ table.table td i {
     float: left;
     margin-top: 6px;
     font-size: 95%;
+}
+a {
+  text-decoration: none;
 }    
-</style>
 
+</style>
+<div class='container-fluid'>
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page"><a href='{{route('home')}}'>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Consulta Usuario</li>
+        </ol>
+    </nav>
+</div>
 <div class="container-xl" style="color: antiquewhite;">
     <div class="abs-center">
     <div class="table-responsive">
@@ -152,6 +164,8 @@ table.table td i {
                         <th>Correo</th>
                         <th>Tipo de usuario</th>
                         <th>Nombre de Departamento</th>
+                        <th>Registro</th>
+                        <th>Editado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -162,6 +176,8 @@ table.table td i {
                         <td>{{$CU->Correo}}</td>
                         <td>{{$CU->nameRole}}</td>
                         <td>{{$CU->nameDep}}</td>
+                        <td>{{$CU->Registro}}</td>
+                        <td>{{$CU->Editado}}</td>
                     </tr>
                     @endforeach
                 </tbody>

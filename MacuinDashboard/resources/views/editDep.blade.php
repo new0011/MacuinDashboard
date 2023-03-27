@@ -10,7 +10,39 @@
         width: 30%;
         background-color: white;
     }
+a {
+  text-decoration: none;
+}    
+
 </style>
+@if((session()->has('confDep')))
+<script>
+     notie.alert({
+        type: 1, 
+        text: 'Guardado Correctamente',
+    })
+</script>
+@endif
+
+@if($errors->any())
+<script>
+    notie.alert({
+       type: 3, 
+       text: 'Favor de checar los datos introducidos >:(',
+   })
+</script>
+@endif
+<div class='container-fluid'>
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page"><a href='{{route('home')}}'>Home</a></li>
+          <li class="breadcrumb-item" aria-current="page"><a href='{{route('registerD')}}'>Registrar Departamento</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Editar Departamento</li>          
+        </ol>
+    </nav>
+</div>
+
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
         <symbol id="prov" viewBox="0 0 16 16">
             <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
@@ -33,12 +65,12 @@
                     <div class="form-group">
                         <label class="form-label">Nombre del departamento: </label>
                         <input required type="text" class="form-control" name="NameDep" placeholder="Introduce el nombre del departamento..." value="{{$dept->NameDep}}">
-                        <!--<p class="fv-bold text-danger">{$errors->first('Nombre_Usuario')}}</p>-->
+                        <p class="fv-bold text-danger">{{$errors->first('NameDep')}}</p>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Descripción: </label>
                         <textarea required class="form-control" name="Descripcion" rows="3" placeholder="Desatate">{{$dept->Descripcion}}</textarea>
-                        <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
+                        <p class="fv-bold text-danger">{{$errors->first('Descripcion')}}</p>
                     </div>
                 <div class="text-center">
                     <button type="submit" name="btnsaveD" class="btn btn-dark m-3">Guardar</button>

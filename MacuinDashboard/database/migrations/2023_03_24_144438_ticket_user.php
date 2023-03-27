@@ -17,8 +17,8 @@ return new class extends Migration
             $table->bigInteger('IDTick')->unsigned();
             $table->timestamps();
 
-            $table->foreign('IDU')->references('IDU')->on('Usuario');
-            $table->foreign('IDTick')->references('IDTick')->on('Ticket');
+            $table->foreign('IDU')->references('IDU')->on('Usuario')->onDelete('cascade');
+            $table->foreign('IDTick')->references('IDTick')->on('Ticket')->onDelete('cascade');
         });
     }
 

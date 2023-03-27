@@ -126,9 +126,38 @@ table.table td i {
     float: left;
     margin-top: 6px;
     font-size: 95%;
+}
+a {
+  text-decoration: none;
 }    
 </style>
+@if((session()->has('confTS')))
+<script>
+     notie.alert({
+        type: 1, 
+        text: 'Asignacion de Auxiliar Exitosa ;)',
+    })
+</script>
+@endif
 
+@if($errors->any())
+<script>
+    notie.alert({
+       type: 3, 
+       text: 'Error al Asignar :(',
+   })
+</script>
+@endif
+
+<div class='container-fluid'>
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page"><a href='{{route('home')}}'>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Control de Tickets</li>
+        </ol>
+    </nav>
+</div>
 <div class="container-xl" style="color: antiquewhite;">
     <div class="abs-center">
     <div class="table-responsive">
@@ -151,21 +180,39 @@ table.table td i {
                         <th>Solicitante</th>
                         <th>Problema</th>
                         <th>Auxiliar</th>
-                        <th>Fecha</th>
+                        <th>Status</th>
+                        <th>Comentarios</th>
+                        <th>Registro</th>
+                        <th>Actualizacion</th>
                         <th>Reporte</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Thomas Hardy</td>
-                        <td>No funciona la impresora</td>
-                        <td><button type="submit" class="btn btn-success"><a style="color:white;" href="{{route('asigAuxiliar')}}">Asignar</a></button></td>
-                        <td>16/02/2023</td>
+                        @foreach($cT as $cT)
+                        <td>{{$cT->IDTick}}</td>
+                        <td>{{$cT->Cliente}}</td>
+                        <td>{{$cT->Problema}}</td>
                         <td>
-                            <button class="btn btn-primary">Generar Reporte</button>
+                            @if($cT->Auxiliar == 'User')
+                                <button type="submit" class="btn btn-success"><a style="color:white;" href="{{route('asigAuxiliar', $cT->IDTick)}}">Asignar</a></button>
+                            @else
+                                {{$cT->Auxiliar}}
+                            @endif
+                        </td>
+                        <td>{{$cT->Status}}</td>
+                        <td>{{$cT->Comentarios}}</td>
+                        <td>{{$cT->Registrado}}</td>
+                        <td>{{$cT->Editado}}</td>
+                        <td>
+                            @if($cT->Status != 'En Proceso')
+                                <button class="btn btn-primary">Generar Reporte</button>
+                            @else
+                                <button disabled class="btn btn-secondary">Generar Reporte</button>
+                            @endif                            
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
 

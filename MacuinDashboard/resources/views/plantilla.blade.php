@@ -15,6 +15,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <style>
+      /* override styles here */
+      .notie-container {
+        box-shadow: none;
+      }
+    </style>
+
   <style>
       footer{
           position: fixed;
@@ -31,9 +39,9 @@
   </style>
 
   </head>
-<body style="background-color: #FFB319">
+<body style="background-color: #BFACE2;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand ml-5" href="">Inicio</a>
+        <a class="navbar-brand ml-5" href="{{route('home')}}">Inicio</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -54,10 +62,14 @@
                 <a class="dropdown-item" href="{{route('consDepart')}}">Consultar Departamento</a>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('control')}}">Tickets</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ticket</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown09">
+                <a class="dropdown-item" href="{{route('control')}}">Control Tickets</a>
+                <a class="dropdown-item" href="{{route('newTicket')}}">Nuevo Ticket</a>
+              </div>  
             </li>
-            <li>
+            <li class="nav-item active">
               <a class="nav-link" href="{{route('report')}}">Reportes</a>
             </li>
           </ul>
@@ -65,18 +77,22 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->nameU}}</a>
               <div class="dropdown-menu" aria-labelledby="dropdown09">
-                <a class="dropdown-item" href="{{route('registerU')}}">Editar Perfil</a>
-                <a class="dropdown-item" href="{{route('consUser')}}">Log Out</a>
+                <a class="dropdown-item" href="{{route('editUser', auth()->user()->IDU)}}">Editar Perfil</a>
+                <form action="{{route('logout')}}" method="post">
+                  {!! csrf_field() !!}
+                  <button type="submit" class="dropdown-item">Log Out</button>
+                </form>
               </div>
             </li>
           </ul>
-          <!--<form method="post" class="form-inline my-2 my-md-0" action="{{route('logout')}}">
+          <!--<form method="post" class="form-inline my-2 my-md-0" action="{route('logout')}}">
             csrf
             <input class="form-control" type="text" placeholder="Search" aria-label="Search">
             <button type="submit" name="btnLogout" class="btn btn-dark mr-3">Salir</button>
           </form>-->
         </div>
       </nav>
+      <script src="https://unpkg.com/notie"></script>
       @yield('content')
 </body>
 </html>

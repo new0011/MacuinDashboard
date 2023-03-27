@@ -10,16 +10,23 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Departamentos;
 use App\Models\Role;
 use App\Models\ConsUser;
+use App\Http\Requests\UserReq;
+use App\Http\Requests\logReq;
 
 class LoginController extends Controller
 {
     protected $depto;
     protected $role;
     protected $CUser;
-    public function __construct(Departamentos $depto, Role $role, ConsUser $CUser){
+    protected $us;
+    public function __construct(Departamentos $depto, Role $role, ConsUser $CUser, User $us){
         $this->depto = $depto;
         $this->role = $role;
         $this->CUser = $CUser;
+        $this->us = $us;
+    }
+    public function home(){
+        return view('home');
     }
     public function datesSelect(){
         $dep = $this->depto->getAllDepart();
@@ -34,7 +41,7 @@ class LoginController extends Controller
         $dep = $this->depto->getAllDepart();
         return view('registerUOut', compact('dep'));
     }
-    public function register(Request $req){
+    public function register(UserReq $req){
         $user = new User();
 
         $user->nameU = $req->nameU;
@@ -57,16 +64,16 @@ class LoginController extends Controller
             $user->assignRole('Cliente');
         }
         if($req->verify == 2){
-            return redirect(route('login'));
+            return redirect(route('login'))->with('conflog', 'Guardado Correctamente');
         }
         if($req->verify == 1){
-            return redirect(route('registerU'));
+            return redirect(route('login'))->with('conflog', 'Guardado Correctamente');
         }
     }
     public function getLogin(){
         return view('login');
     }
-    public function login(Request $req){
+    public function login(logReq $req){
         $credentials = [
             "email" => $req->email,
             "password" => $req->password
@@ -74,9 +81,9 @@ class LoginController extends Controller
         #$remember = ($req->has('remember') ? true : false);
         if(Auth::attempt($credentials)){
             $req->session()->regenerate();
-            return redirect(route('registerU'));
+            return redirect(route('home'))->with('conflog', 'Guardado Correctamente');
         }else{
-            return redirect(route('login'));
+            return redirect(route('login'))->with('conflog1', 'Guardado Correctamente');
         }
     }
     public function logout(Request $req){
@@ -85,5 +92,10 @@ class LoginController extends Controller
         $req->session()->regenerateToken();
 
         return redirect(route('login'));
+    }
+    public function edit($id){
+        $dep = $this->depto->getAllDepart();
+        $users=$this->us->getIdUser($id);
+        return view('editUser', compact('users', 'dep'));
     }
 }

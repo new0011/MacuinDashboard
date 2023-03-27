@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Vista', function(Blueprint $table){
-            $table->increments('IDVista');
-            $table->string('nameVista');
-            $table->timestamps();
+        Schema::table('Usuario', function (Blueprint $table) {
+            //$table->
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Vista');
+        Schema::table('Usuario', function (Blueprint $table) {
+            //
+        });
     }
 };

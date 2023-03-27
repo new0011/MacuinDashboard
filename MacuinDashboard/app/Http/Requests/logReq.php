@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
-class DepartReq extends FormRequest
+
+class logReq extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +24,17 @@ class DepartReq extends FormRequest
     public function rules(): array
     {
         return [
-            'NameDep' => 'required|unique:Departamento|min:5',
-            'Descripcion' => 'required|min:5'
+            'email' => 'required|email|min:5|max:60',
+            'password' => [
+                'required',
+                'max:50',
+                Password::min(8)
+                    ->mixedCase()
+                    ->letters()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised(),
+            ],
         ];
     }
 }

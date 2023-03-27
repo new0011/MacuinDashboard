@@ -14,7 +14,9 @@ class ConsUser extends Model
         'Nombre Completo',
         'Correo',
         'nameRole',
-        'nameDep'
+        'nameDep',
+        'Registro',
+        'Editado'
     ];
     public function getAllDatosU(){
         return ConsUser::all();

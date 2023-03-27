@@ -126,49 +126,94 @@ table.table td i {
     float: left;
     margin-top: 6px;
     font-size: 95%;
+}
+a {
+  text-decoration: none;
 }    
 </style>
+@if((session()->has('confDep')))
+<script>
+     notie.alert({
+        type: 1, 
+        text: 'Eliminado Correctamente',
+    })
+</script>
+@endif
 
+@if($errors->any())
+<script>
+    notie.alert({
+       type: 3, 
+       text: 'Error al borrar :(',
+   })
+</script>
+@endif
+<div class='container-fluid'>
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page"><a href='{{route('home')}}'>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Consulta Departamentos</li>
+        </ol>
+    </nav>
+</div>
 <div class="container-xl" style="color: antiquewhite;">
     <div class="abs-center">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-8" style="color: #000066;"><h2>Departamentos</h2></div>
-                    <div class="col-sm-4">
-                        <div class="search-box">
-                            <i class="material-icons">&#xE8B6;</i>
-                            <input type="text" class="form-control" placeholder="Search&hellip;">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-8" style="color: #000066;"><h2>Departamentos</h2></div>
+                        <div class="col-sm-4">
+                            <div class="search-box">
+                                <i class="material-icons">&#xE8B6;</i>
+                                <input type="text" class="form-control" placeholder="Search&hellip;">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <table class="table table-striped table-hover table-bordered" style="background-color: white">
+                    <thead>
+                        <tr style="background-color: #FFEA20;">
+                            <th>ID</th>
+                            <th>Nombre del departamento</th>
+                            <th>Descripción</th>
+                            <th>Registro</th>
+                            <th>Editado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach($dept as $dept)
+                            <th scope="row">{{$dept->IDEP}}</th>
+                            <td>{{$dept->NameDep}}</td>
+                            <td>{{$dept->Descripcion}}</td>
+                            <td>{{$dept->created_at}}</td>
+                            <td>{{$dept->updated_at}}</td>
+                            <td>
+                                <form action="{{route('consDepart.destroy', $dept->IDEP)}}" method="post">
+                                    <a href="{{route('consDepart.edit', $dept->IDEP)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    {!!method_field('DELETE') !!}
+                                    {!! csrf_field() !!}
+                                    <button type="submit" class="btn btn-link" onclick="return confirm('¿Seguro que quieres eliminar este campo? Todos los usuarios asociados al departamento seran eliminados');"><a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></button>
+                                </form>
+                            </td>
+                        </tr>
+                            @endforeach                
+                    </tbody>
+                </table>
+                <script>
+                    function Mensaje(){
+                        return notie.confirm({
+                            text: '¿Seguro que quieres eliminar este campo?',
+                            submitText: 'Si',
+                            cancelText: 'No'
+                        });
+                    }
+                </script>
             </div>
-            <table class="table table-striped table-hover table-bordered" style="background-color: white">
-                <thead>
-                    <tr style="background-color: #FFEA20;">
-                        <th>ID</th>
-                        <th>Nombre del departamento</th>
-                        <th>Descripción</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        @foreach($dept as $dept)
-                        <th scope="row">{{$dept->IDEP}}</th>
-                        <td>{{$dept->NameDep}}</td>
-                        <td>{{$dept->Descripcion}}</td>
-                        <td>
-                            <a href="{{route('consDepart.edit', $dept->IDEP)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                        @endforeach                
-                </tbody>
-            </table>
         </div>
-    </div>
     </div>  
 </div>
 @stop

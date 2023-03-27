@@ -14,7 +14,9 @@ class Departamentos extends Model
     protected $fillable= [
         'IDEP',
         'NameDep',
-        'Descripcion'
+        'Descripcion',
+        'created_at',
+        'updated_at'
     ];
 
     public function getAllDepart(){

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DepartReq extends FormRequest
+class TicketReq extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class DepartReq extends FormRequest
     public function rules(): array
     {
         return [
-            'NameDep' => 'required|unique:Departamento|min:5',
-            'Descripcion' => 'required|min:5'
+            'Problema' => 'required|min:5|max:100',
+            'Comentarios' => 'required|min:5|max:100'
         ];
     }
 }

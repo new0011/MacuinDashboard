@@ -126,9 +126,21 @@ table.table td i {
     float: left;
     margin-top: 6px;
     font-size: 95%;
+}
+a {
+  text-decoration: none;
 }    
 </style>
-
+<div class='container-fluid'>
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page"><a href='{{route('home')}}'>Home</a></li>
+          <li class="breadcrumb-item" aria-current="page"><a href='{{route('control')}}'>Control de Tickets</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Asignar Usuario</li>
+        </ol>
+    </nav>
+</div>
 <div class="container-xl" style="color: antiquewhite;">
     <div class="abs-center">
     <div class="table-responsive">
@@ -148,34 +160,30 @@ table.table td i {
                 <thead>
                     <tr style="background-color: #00FA9A;">
                         <th>ID Auxiliar</th>
+                        <th>Correo</th>
                         <th>Nombre</th>
-                        <th>Status</th>
-                        <th>Calificacion Promedio</th>
                         <th>Asignar</th>
-                        <th>Comentarios</th>
+                        <th>Departamento</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Gabo</td>
-                        <td>Ocupado</td>
-                        <td>5.5/10</td>
+                        @foreach($Aux as $a)
+                        <td>{{$a->IDU}}</td>
+                        <td>{{$a->email}}</td>
+                        <td>{{$a->NombreCompleto}}</td>
                         <td>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <form action="{{route('controlTickets.update', $id)}}" method="post">
+                                {!! csrf_field() !!}
+                                {!! method_field('PUT') !!}
+                                <input type="hidden" name="IDAux" value="{{$a->IDU}}">
+                                <button type="submit" class="btn btn-success">Seleccionar</button>
+                            </form>
                         </td>
-                        <td>Buen servicio</td>
+
+                        <td>{{$a->NameDep}}</td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lolita</td>
-                        <td>Ocupado</td>
-                        <td>5.5/10</td>
-                        <td>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                        </td>
-                        <td>Buen servicio</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
 

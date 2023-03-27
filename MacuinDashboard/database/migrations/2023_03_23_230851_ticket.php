@@ -16,9 +16,13 @@ return new class extends Migration
             $table->text('Problema');
             $table->longText('Comentarios');
             $table->integer('IDSta')->unsigned();
+            $table->bigInteger('IDCli')->unsigned();
+            $table->bigInteger('IDAux')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->foreign('IDSta')->references('IDStat')->on('Status');
+            $table->foreign('IDSta')->references('IDStat')->on('Status')->onDelete('cascade');
+            $table->foreign('IDCli')->references('IDU')->on('Usuario')->onDelete('cascade');
+            $table->foreign('IDAux')->references('IDU')->on('Usuario')->onDelete('cascade');
         });
     }
 

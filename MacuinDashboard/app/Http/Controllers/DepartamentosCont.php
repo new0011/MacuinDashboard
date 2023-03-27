@@ -59,12 +59,12 @@ class DepartamentosCont extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $req, string $id)
+    public function update(DepartReq $req, string $id)
     {
         $dept=Departamentos::find($id);
         $dept->fill($req->all());
         $dept->save();
-        return redirect(route('consDepart'));
+        return redirect(route('consDepart'))->with('confDep', 'Guardado Correctamente');
     }
 
     /**
@@ -72,6 +72,8 @@ class DepartamentosCont extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dept=Departamentos::find($id);
+        $dept->delete();
+        return redirect(route('consDepart'))->with('confDep', 'Eliminado Correctamente');
     }
 }

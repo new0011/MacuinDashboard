@@ -23,8 +23,8 @@ return new class extends Migration
             $table->integer('IDEP')->unsigned();
             $table->timestamps();
 
-            $table->foreign('IDRole')->references('IDRole')->on('Role');
-            $table->foreign('IDEP')->references('IDEP')->on('Departamento');
+            $table->foreign('IDRole')->references('IDRole')->on('Role')->onDelete('cascade');
+            $table->foreign('IDEP')->references('IDEP')->on('Departamento')->onDelete('cascade');
         });
     }
 
