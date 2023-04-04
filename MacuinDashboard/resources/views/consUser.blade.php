@@ -130,8 +130,24 @@ table.table td i {
 a {
   text-decoration: none;
 }    
-
 </style>
+@if((session()->has('confDel')))
+<script>
+     notie.alert({
+        type: 1, 
+        text: 'Eliminado Correctamente',
+    })
+</script>
+@endif
+
+@if($errors->any())
+<script>
+    notie.alert({
+       type: 3, 
+       text: 'Error al borrar :(',
+   })
+</script>
+@endif
 <div class='container-fluid'>
     <br>
     <nav aria-label="breadcrumb">
@@ -158,7 +174,7 @@ a {
             </div>
             <table class="table table-striped table-hover table-bordered" style="background-color: white">
                 <thead>
-                    <tr style="background-color: #FFEA20;">
+                    <tr style="background-color: #BFACE2;">
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Correo</th>
@@ -166,6 +182,7 @@ a {
                         <th>Nombre de Departamento</th>
                         <th>Registro</th>
                         <th>Editado</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -174,10 +191,17 @@ a {
                         <td>{{$CU->IDU}}</td>
                         <td>{{$CU->NombreCompleto}}</td>
                         <td>{{$CU->Correo}}</td>
-                        <td>{{$CU->nameRole}}</td>
+                        <td>{{$CU->name}}</td>
                         <td>{{$CU->nameDep}}</td>
                         <td>{{$CU->Registro}}</td>
                         <td>{{$CU->Editado}}</td>
+                        <td>
+                            <form action="{{route('consUser.destroy', $CU->IDU)}}" method="post">
+                                {!!method_field('DELETE') !!}
+                                {!! csrf_field() !!}
+                                <button type="submit" class="btn btn-link" onclick="return confirm('¿Seguro que quieres eliminar este Usuario?');"><a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

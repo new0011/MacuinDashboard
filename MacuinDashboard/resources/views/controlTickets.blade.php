@@ -175,16 +175,16 @@ a {
             </div>
             <table class="table table-striped table-hover table-bordered" style="background-color: white">
                 <thead>
-                    <tr style="background-color: #00FA9A;">
+                    <tr style="background-color: #BFACE2;">
                         <th>IDTicket</th>
                         <th>Solicitante</th>
                         <th>Problema</th>
                         <th>Auxiliar</th>
                         <th>Status</th>
-                        <th>Comentarios</th>
+                        <th>Comentario</th>
+                        <th>Observacion para Aux</th>
                         <th>Registro</th>
                         <th>Actualizacion</th>
-                        <th>Reporte</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -194,23 +194,33 @@ a {
                         <td>{{$cT->Cliente}}</td>
                         <td>{{$cT->Problema}}</td>
                         <td>
-                            @if($cT->Auxiliar == 'User')
+                            @if($cT->Auxiliar == 'User' and $cT->Status == 'En Proceso')
                                 <button type="submit" class="btn btn-success"><a style="color:white;" href="{{route('asigAuxiliar', $cT->IDTick)}}">Asignar</a></button>
                             @else
                                 {{$cT->Auxiliar}}
                             @endif
                         </td>
                         <td>{{$cT->Status}}</td>
-                        <td>{{$cT->Comentarios}}</td>
+                        <td>
+                            @if($cT->Comentarios == '')
+                                <a href="{{route('controlTickets.comment', $cT->IDTick)}}" class="btn btn-success" title="Edit" data-toggle="tooltip">Escribir...</a>
+                            @else
+                                {{$cT->Comentarios}}
+                            @endif
+                        </td>
+                        <td>
+                        @if($cT->Observaciones == '' and $cT->Auxiliar != 'User')
+                            <a href="{{route('controlTickets.observ', $cT->IDTick)}}" class="btn btn-success" title="Edit" data-toggle="tooltip">Escribir...</a>
+                        @endif
+                        @if($cT->Auxiliar == 'User')
+                            <a href="{{route('controlTickets.observ', $cT->IDTick)}}" class="btn btn-success disabled" title="Edit" data-toggle="tooltip">Escribir...</a>
+                        @endif
+                        @if($cT->Auxiliar != 'User' and $cT->Observaciones != '')
+                            {{$cT->Observaciones}}
+                        @endif
+                        </td>
                         <td>{{$cT->Registrado}}</td>
                         <td>{{$cT->Editado}}</td>
-                        <td>
-                            @if($cT->Status != 'En Proceso')
-                                <button class="btn btn-primary">Generar Reporte</button>
-                            @else
-                                <button disabled class="btn btn-secondary">Generar Reporte</button>
-                            @endif                            
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>

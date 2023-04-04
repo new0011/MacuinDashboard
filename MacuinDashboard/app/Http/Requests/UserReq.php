@@ -39,7 +39,7 @@ class UserReq extends FormRequest
             ],
             'password_confirmation' => 'required|min:8|max:50|same:password',
             'IDEP' => 'required',
-            'IDRole' => 'required'
+            'id' => 'required'
         ];
     }
 }

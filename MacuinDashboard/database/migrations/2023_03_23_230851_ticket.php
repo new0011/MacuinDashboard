@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Ticket', function (Blueprint $table) {
             $table->bigIncrements('IDTick');
             $table->text('Problema');
-            $table->longText('Comentarios');
+            $table->longText('Comentarios')->nullable();
             $table->integer('IDSta')->unsigned();
             $table->bigInteger('IDCli')->unsigned();
             $table->bigInteger('IDAux')->unsigned()->nullable();

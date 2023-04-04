@@ -32,6 +32,11 @@ class TicketControl extends Controller
         return view('asigAuxiliar', compact('Aux', 'id'));
     }
 
+    public function indexCli($email){
+        $cT = $this->controlT->getTicketCli($email);
+        return view('consTicketCli', compact('cT'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -40,6 +45,13 @@ class TicketControl extends Controller
         return view('newTicket');
     }
 
+    public function comment($id){
+        return view('comment', compact('id'));
+    }
+
+    public function observ($id){
+        return view('observ', compact('id'));
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -47,10 +59,9 @@ class TicketControl extends Controller
     {
         $ti = new Ticket();
         $ti->Problema=$req->Problema;
-        $ti->Comentarios=$req->Comentarios;
         $ti->IDSta=$req->IDSta;
         $ti->IDCli=$req->IDCli;
-        $ti->IDAux=2;
+        $ti->IDAux=1;
         $ti->save();
         return redirect(route('newTicket'))->with('confTick', 'Enviado Correctamente');
     }
@@ -82,6 +93,26 @@ class TicketControl extends Controller
         return redirect(route('control'))->with('confTC', 'Asignado Auxiliar Correctamente');
     }
 
+    public function updateC(Request $req, $id){
+        $commAsig = Ticket::find($id);
+        $commAsig->Comentarios = $req->Comentario;
+        $commAsig->save();
+        return redirect(route('control'));
+    }
+
+    public function updateO(Request $req, $id){
+        $observAsig = Ticket::find($id);
+        $observAsig->Observaciones = $req->Observaciones;
+        $observAsig->save();
+        return redirect(route('control'));
+    }
+
+    public function updateStat($id){
+        $upd = Ticket::find($id);
+        $upd->IDSta = 5;
+        $upd->save();
+        return redirect(route('consTicketCli.index', auth()->user()->email))->with('confCancel', 'Cancelado Exitosamente');
+    }
     /**
      * Remove the specified resource from storage.
      */

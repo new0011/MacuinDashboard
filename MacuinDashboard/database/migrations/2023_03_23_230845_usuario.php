@@ -19,11 +19,10 @@ return new class extends Migration
             $table->string('LastNameM');
             $table->string('password');
             $table->rememberToken();
-            $table->integer('IDRole')->unsigned();
+            $table->bigInteger('id')->unsigned();
             $table->integer('IDEP')->unsigned();
             $table->timestamps();
-
-            $table->foreign('IDRole')->references('IDRole')->on('Role')->onDelete('cascade');
+            $table->foreign('id')->references('id')->on('roles')->onDelete('cascade');
             $table->foreign('IDEP')->references('IDEP')->on('Departamento')->onDelete('cascade');
         });
     }

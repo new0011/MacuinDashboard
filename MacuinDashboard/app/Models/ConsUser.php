@@ -13,7 +13,7 @@ class ConsUser extends Model
         'IDU',
         'Nombre Completo',
         'Correo',
-        'nameRole',
+        'name',
         'nameDep',
         'Registro',
         'Editado'

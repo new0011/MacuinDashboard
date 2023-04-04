@@ -23,7 +23,6 @@ class TicketReq extends FormRequest
     {
         return [
             'Problema' => 'required|min:5|max:100',
-            'Comentarios' => 'required|min:5|max:100'
         ];
     }
 }

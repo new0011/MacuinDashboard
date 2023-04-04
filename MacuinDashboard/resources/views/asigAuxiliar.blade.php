@@ -158,7 +158,7 @@ a {
             </div>
             <table class="table table-striped table-hover table-bordered" style="background-color: white">
                 <thead>
-                    <tr style="background-color: #00FA9A;">
+                    <tr style="background-color: #BFACE2;">
                         <th>ID Auxiliar</th>
                         <th>Correo</th>
                         <th>Nombre</th>
@@ -173,7 +173,7 @@ a {
                         <td>{{$a->email}}</td>
                         <td>{{$a->NombreCompleto}}</td>
                         <td>
-                            <form action="{{route('controlTickets.update', $id)}}" method="post">
+                            <form action="{{route('asigAuxiliar.update', $id)}}" method="post">
                                 {!! csrf_field() !!}
                                 {!! method_field('PUT') !!}
                                 <input type="hidden" name="IDAux" value="{{$a->IDU}}">

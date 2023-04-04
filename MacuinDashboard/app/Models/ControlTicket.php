@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class ControlTicket extends Model
 {
@@ -12,7 +13,9 @@ class ControlTicket extends Model
     protected $fillable =[
         'IDTick',
         'Problema',
+        'email',
         'Comentarios',
+        'Observaciones',
         'Status',
         'Cliente',
         'Auxiliar',
@@ -22,5 +25,8 @@ class ControlTicket extends Model
 
     public function getAllControlT(){
         return ControlTicket::all();
+    }
+    public function getTicketCli($id){
+        return ControlTicket::all()->where('email', '=', $id);
     }
 }

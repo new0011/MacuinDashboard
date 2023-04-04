@@ -13,6 +13,7 @@ class Ticket extends Model
     protected $fillable = [
         'Problema',
         'Comentarios',
+        'Observaciones',
         'IDSta',
         'IDCli',
         'IDAux',

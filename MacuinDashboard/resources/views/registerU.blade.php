@@ -102,13 +102,13 @@ a {
                     </div>
                     <div class="form-group">
                         <label class="form-label" name="TypeU">Tipo de usuario: </label>
-                        <select name="IDRole" class="form-select" aria-label=".form-select-lg example">
+                        <select name="id" class="form-select" aria-label=".form-select-lg example">
                             <option disabled selected>Selecciona una opción</option>
                             @foreach($rol as $rol)
-                                <option value="{{$rol->IDRole}}">{{$rol->nameRole}}</option>
+                                <option value="{{$rol->id}}">{{$rol->name}}</option>
                             @endforeach
                         </select>
-                        <p class="fv-bold text-danger">{{$errors->first('IDRole')}}</p>
+                        <p class="fv-bold text-danger">{{$errors->first('id')}}</p>
                     </div>
                     <input type="hidden" name="verify" value="1">                        
                 <div class="text-center">

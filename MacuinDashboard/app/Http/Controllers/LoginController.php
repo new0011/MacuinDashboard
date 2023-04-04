@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Departamentos;
-use App\Models\Role;
+use App\Models\roles;
 use App\Models\ConsUser;
 use App\Http\Requests\UserReq;
 use App\Http\Requests\logReq;
@@ -19,7 +19,7 @@ class LoginController extends Controller
     protected $role;
     protected $CUser;
     protected $us;
-    public function __construct(Departamentos $depto, Role $role, ConsUser $CUser, User $us){
+    public function __construct(Departamentos $depto, roles $role, ConsUser $CUser, User $us){
         $this->depto = $depto;
         $this->role = $role;
         $this->CUser = $CUser;
@@ -47,20 +47,20 @@ class LoginController extends Controller
         $user->nameU = $req->nameU;
         $user->LastNameP = $req->LastNameP;
         $user->LastNameM = $req->LastNameM;
-        $user->IDRole = $req->IDRole;
+        $user->id = $req->id;
         $user->IDEP = $req->IDEP;
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
         $user->save();
         Auth::login($user);
 
-        if($req->IDRole == 1) {
+        if($req->id == 1) {
             $user->assignRole('Jefe');
         }
-        if ($req->IDRole == 2) {
+        if ($req->id == 2) {
             $user->assignRole('Auxiliar');
         }
-        if($req->IDRole == 3) {
+        if($req->id == 3) {
             $user->assignRole('Cliente');
         }
         if($req->verify == 2){
@@ -97,5 +97,11 @@ class LoginController extends Controller
         $dep = $this->depto->getAllDepart();
         $users=$this->us->getIdUser($id);
         return view('editUser', compact('users', 'dep'));
+    }
+
+    public function destroy($id){
+        $Us=User::find($id);
+        $Us->delete();
+        return redirect(route('consUser'))->with('confDel', 'Eliminado Correctamente');
     }
 }

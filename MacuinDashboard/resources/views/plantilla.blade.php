@@ -48,6 +48,7 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample09">
           <ul class="navbar-nav mr-auto">
+            @if(auth()->user()->id == 1)
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
               <div class="dropdown-menu" aria-labelledby="dropdown09">
@@ -62,16 +63,30 @@
                 <a class="dropdown-item" href="{{route('consDepart')}}">Consultar Departamento</a>
               </div>
             </li>
+            @endif
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ticket</a>
               <div class="dropdown-menu" aria-labelledby="dropdown09">
+                @if(auth()->user()->id==1)
                 <a class="dropdown-item" href="{{route('control')}}">Control Tickets</a>
+                @endif
+                @if(auth()->user()->id==3)
+                <a class="dropdown-item" href="{{route('consTicketCli.index', auth()->user()->email)}}">Ver Tickets</a>
                 <a class="dropdown-item" href="{{route('newTicket')}}">Nuevo Ticket</a>
+                @endif
               </div>  
             </li>
+            @if(auth()->user()->id==1 || auth()->user()->id==2)
             <li class="nav-item active">
-              <a class="nav-link" href="{{route('report')}}">Reportes</a>
+              <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reportes</a>
+              @if(auth()->user()->id==1)
+              <div class="dropdown-menu" aria-labelledby="dropdown09">
+                <a class="dropdown-item" href="{{route('control')}}">Todos los Tickets</a>
+                <a class="dropdown-item" href="{{route('newTicket')}}">Elegir por Auxiliar</a>
+              </div> 
+              @endif 
             </li>
+            @endif
           </ul>
           <ul class="navbar-nav mr-5">
             <li class="nav-item dropdown">

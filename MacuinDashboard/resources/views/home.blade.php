@@ -22,7 +22,7 @@
    })
 </script>
 @endif
-
+{{auth()->user()->id}}
 <div class='container-fluid'>
     <br>
     <nav aria-label="breadcrumb">
