@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DepartamentosCont;
 use App\Http\Controllers\TicketControl;
+use App\Http\Controllers\printReports;
 use Inertia\Inertia;
 
 /*
@@ -30,9 +31,20 @@ Route::group(['middleware' => ['role:Cliente']], function(){
     Route::get('/{email}/consTicketCli', [TicketControl::class, 'indexCli'])->middleware('auth')->name('consTicketCli.index');
     Route::put('/consTicketCli/{id}', [TicketControl::class, 'updateStat'])->middleware('auth')->name('consTicketCli.updateStat');
 });
+Route::group(['middleware' => ['role:Auxiliar']], function(){
+    Route::get('/{id}/consTicketAux', [TicketControl::class, 'indexAux'])->middleware('auth')->name('consTicketAux.index');
+    Route::get('/{id}/consTicketAux/changeStatus', [TicketControl::class, 'changeS'])->middleware('auth')->name('consTicketAux.changeS');
+    Route::put('/changeStatus/{id}', [TicketControl::class, 'updateStat1'])->middleware('auth')->name('changeStatus.update');
+    Route::get('/reportAux', [printReports::class, 'createContA'])->middleware('auth')->name('createContA');
+    Route::post('/reportAux/imprimir', [printReports::class, 'printContA'])->middleware('auth')->name('printCA');
+    Route::get('/printTicketA', [printReports::class, 'indexA'])->middleware('auth')->name('printTicketA');
+});
 #Rutas para Jefe
 Route::group(['middleware' => ['role:Jefe']], function(){
+    #Imprimir en PDF
+    Route::post('/reportJefe/imprimir', [printReports::class, 'printContJ'])->middleware('auth')->name('printCJ');
     #Formularios
+    Route::get('/reportJefe', [printReports::class, 'createContJ'])->middleware('auth')->name('createContJ');
     Route::get('/{id}/editUser', [LoginController::class, 'edit'])->middleware('auth')->name('editUser');
     Route::get('/registerU', [LoginController::class, 'datesSelect'])->name('registerU');
     Route::get('/registerD', [DepartamentosCont::class, 'create'])->middleware('auth')->name('registerD');
@@ -43,6 +55,7 @@ Route::group(['middleware' => ['role:Jefe']], function(){
     Route::get('/consDepart', [DepartamentosCont::class, 'index'])->middleware('auth')->name('consDepart');
     Route::get('/consUser', [LoginController::class, 'users'])->middleware('auth')->name('consUser');
     Route::get('/controlTickets', [TicketControl::class, 'index'])->middleware('auth')->name('control');
+    Route::get('/printTicket', [printReports::class, 'index'])->middleware('auth')->name('printTicket');
     Route::get('/controlTickets/{id}/asigAuxiliar', [TicketControl::class, 'index1'])->middleware('auth')->name('asigAuxiliar');
     #Formularios Envio
     Route::post('/registerU/registered', [LoginController::class, 'register'])->name('registerU.registered');

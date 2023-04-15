@@ -19,6 +19,7 @@ class ControlTicket extends Model
         'Status',
         'Cliente',
         'Auxiliar',
+        'IDAux',
         'Registrado',
         'Editado'
     ];
@@ -26,7 +27,16 @@ class ControlTicket extends Model
     public function getAllControlT(){
         return ControlTicket::all();
     }
+    public function getAllControlOrder($sort, $sentido){
+        return ControlTicket::orderBy($sort, $sentido)->get();
+    }
     public function getTicketCli($id){
         return ControlTicket::all()->where('email', '=', $id);
+    }
+    public function getTicketAux($id){
+        return ControlTicket::all()->where('IDAux', '=', $id);
+    }
+    public function getTicketAuxOrder($id, $sort, $sentido){
+        return ControlTicket::where('IDAux', '=', $id)->orderBy($sort, $sentido)->get();
     }
 }

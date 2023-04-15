@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MacuinDashboard</title>
+    {{HTML::style('ordenamiento.css')}}
+    {{HTML::script('ordenamiento.js')}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -74,17 +77,25 @@
                 <a class="dropdown-item" href="{{route('consTicketCli.index', auth()->user()->email)}}">Ver Tickets</a>
                 <a class="dropdown-item" href="{{route('newTicket')}}">Nuevo Ticket</a>
                 @endif
+                @if(auth()->user()->id==2)
+                <a class="dropdown-item" href="{{route('consTicketAux.index', auth()->user()->IDU)}}">Consultar Tickets</a>
+                @endif
               </div>  
             </li>
             @if(auth()->user()->id==1 || auth()->user()->id==2)
-            <li class="nav-item active">
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reportes</a>
               @if(auth()->user()->id==1)
               <div class="dropdown-menu" aria-labelledby="dropdown09">
-                <a class="dropdown-item" href="{{route('control')}}">Todos los Tickets</a>
-                <a class="dropdown-item" href="{{route('newTicket')}}">Elegir por Auxiliar</a>
+                <a class="dropdown-item" href="{{route('createContJ')}}">Reporte de Tickets</a>
+              </div> 
+              @endif
+              @if(auth()->user()->id==2)
+              <div class="dropdown-menu" aria-labelledby="dropdown09">
+                <a class="dropdown-item" href="{{route('createContA')}}">Reporte de Tickets</a>
               </div> 
               @endif 
+ 
             </li>
             @endif
           </ul>

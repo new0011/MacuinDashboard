@@ -21,20 +21,19 @@
         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
     </symbol>
 </svg>
-@if((session()->has('conflog1')))
+@if((session()->has('conflog')))
 <script>
      notie.alert({
-        type: 1, 
-        text: 'Bienvenido de vuelta :D',
+        type: 3, 
+        text: 'Verificar las credenciales >:(',
     })
 </script>
 @endif
-
 @if($errors->any())
 <script>
     notie.alert({
        type: 3, 
-       text: 'Verificar las credenciales >:(',
+       text: 'Error al borrar :(',
    })
 </script>
 @endif
@@ -51,7 +50,12 @@
         <div class="row g-3 align-items-center">
                 <div class="form-group">
                     <label class="form-label">Email: </label>
-                    <input required type="email" class="form-control inputB" name="email" placeholder="Direccion de correo..." value="{{old("email")}}">
+                    <input required type="email" class="form-control inputB @error('email') is-invalid @enderror" name="email" placeholder="Direccion de correo..." value="{{old("email")}}" autofocus>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <!--<p class="fv-bold text-danger">{$errors->first('Correo')}}</p>-->
                 </div>
                 <div class="form-group">

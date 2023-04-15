@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use App\Models\ControlTicket;
 use App\Models\asigAux;
 use App\Http\Requests\TicketReq;
+use App\Http\Requests\Status;
 
 class TicketControl extends Controller
 {
@@ -21,6 +22,7 @@ class TicketControl extends Controller
         $this->controlT=$controlT;
         $this->aU=$aU;
     }
+    
     public function index()
     {
         $cT = $this->controlT->getAllControlT();
@@ -37,6 +39,12 @@ class TicketControl extends Controller
         return view('consTicketCli', compact('cT'));
     }
 
+    public function indexAux($id){
+        $cT = $this->controlT->getTicketAux($id);
+        return view('consTicketAux', compact('cT'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -51,6 +59,9 @@ class TicketControl extends Controller
 
     public function observ($id){
         return view('observ', compact('id'));
+    }
+    public function changeS($id){
+        return view('changeStatus', compact('id'));
     }
     /**
      * Store a newly created resource in storage.
@@ -89,6 +100,7 @@ class TicketControl extends Controller
     {
         $auxAsig = Ticket::find($id);
         $auxAsig->IDAux = $req->IDAux;
+        $auxAsig->IDSta = $req->Status;
         $auxAsig->save();
         return redirect(route('control'))->with('confTC', 'Asignado Auxiliar Correctamente');
     }
@@ -107,11 +119,18 @@ class TicketControl extends Controller
         return redirect(route('control'));
     }
 
-    public function updateStat($id){
+    public function updateStat(Request $req, $id){
         $upd = Ticket::find($id);
         $upd->IDSta = 5;
         $upd->save();
         return redirect(route('consTicketCli.index', auth()->user()->email))->with('confCancel', 'Cancelado Exitosamente');
+    }
+
+    public function updateStat1(Status $req, $id){
+        $upd = Ticket::find($id);
+        $upd->IDSta = $req->IDStat;
+        $upd->save();
+        return redirect(route('consTicketAux.index', auth()->user()->IDU))->with('confCancel', 'Cancelado Exitosamente');
     }
     /**
      * Remove the specified resource from storage.

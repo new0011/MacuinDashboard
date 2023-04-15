@@ -2,6 +2,25 @@ body {
     color: #000066;
     background: #f5f5f5;
 }
+table tr th {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+  
+.sorting {
+    background-color: #D4D4D4;
+}
+  
+.asc:after {
+    content: ' ↑';
+}
+  
+.desc:after {
+    content: " ↓";
+}
 .abs-center {
   display: flex;
   align-items: center;
@@ -126,22 +145,3 @@ table.table td i {
 a {
   text-decoration: none;
 }    
-table tr th {
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  .sorting {
-    background-color: #D4D4D4;
-  }
-  
-  .asc:after {
-    content: ' ↑';
-  }
-  
-  .desc:after {
-    content: " ↓";
-  }

@@ -83,7 +83,7 @@ class LoginController extends Controller
             $req->session()->regenerate();
             return redirect(route('home'))->with('conflog', 'Guardado Correctamente');
         }else{
-            return redirect(route('login'))->with('conflog1', 'Guardado Correctamente');
+            return redirect(route('login'))->with('conflog', 'Verificar credenciales');
         }
     }
     public function logout(Request $req){

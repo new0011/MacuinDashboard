@@ -65,7 +65,7 @@ a {
                         <input required type="text" class="form-control" name="Problema" placeholder="Explica brevemente tu problema..." value="{{old("Problema")}}">
                         <p class="fv-bold text-danger">{{$errors->first('Problema')}}</p>
                     </div>
-                    <input type="hidden" name="IDSta" value="3">
+                    <input type="hidden" name="IDSta" value="6">
                     <input type="hidden" name="IDCli" value="{{auth()->user()->IDU}}">
                     <input type="hidden" name="IDAux" value="1">                        
                 <div class="text-center">
